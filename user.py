@@ -82,22 +82,22 @@ def validate_mobile_number(mobile_number):
         logging.warning(f"{mobile_number} is a invalid mobile number")
         return False
     
-def validate_password(pass_rule_2):
+def validate_password(pass_rule_3):
     """
 	Description:
-		Checks whether password is minimum of 8 characters and atleast 1 uppercase letter or not
+		Checks whether password is minimum of 8 characters and >= 1 [A-Z] and >= 1 [0-9], or not
 	Parameters:
-		pass_rule_2: password to validate
+		pass_rule_3: password to validate
 	Return:
 		bool: True if password is valid, False otherwise
     """
-    pattern = r'^(?=.*[A-Z]).{8,}$'
-    search = re.fullmatch(pattern, pass_rule_2)
+    pattern = r'^(?=.*[A-Z])(?=.*[0-9]).{8,}$'
+    search = re.fullmatch(pattern, pass_rule_3)
     if search:
-        logging.info(f"{pass_rule_2} is a valid password")
+        logging.info(f"{pass_rule_3} is a valid password")
         return True
     else:
-        logging.warning(f"{pass_rule_2} is a invalid password")
+        logging.warning(f"{pass_rule_3} is a invalid password")
         return False
             
 def main():
@@ -130,11 +130,11 @@ def main():
             break
         
     while True:
-        password_rule_2 = input("Enter your password (min 8 characters and atleast 1 uppercase letter): ")
-        if validate_password(password_rule_2):
-            print(f"{password_rule_2} is a valid password")
+        password_rule_3 = input("Enter your password (min 8 characters, >= 1 [A-Z] and >= 1 [0-9]): ")
+        if validate_password(password_rule_3):
+            print(f"{password_rule_3} is a valid password")
             break
-        print("Please enter a valid password (min 8 characters and atleast 1 uppercase letter)")
+        print("Please enter a valid password (min 8 characters, >= 1 [A-Z] and >= 1 [0-9])")
 
 if __name__ == "__main__":
-    main()       
+    main()          
