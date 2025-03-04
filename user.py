@@ -45,6 +45,42 @@ def validate_last_name(last_name):
     else:
         logging.warning(f"{last_name} is an invalid last name.")
         return False
+
+def validate_email_id(email_id):
+    """
+	Description:
+		Checks whether email id is valid or not
+	Parameters:
+		email_id: email id to validate
+	Return:
+		bool: True if email id is valid, False otherwise
+    """
+    pattern = r'^[a-zA-Z0-9+%_-]+(?:\.[a-zA-Z0-9+%_-]+)?@[a-zA-Z0-9]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$'
+    search = re.fullmatch(pattern, email_id)
+    if search:
+        logging.info(f"{email_id} is valid email id")
+        return True
+    else:
+        logging.warning(f"{email_id} is invalid email id")
+        return False
+
+def validate_mobile_number(mobile_number):
+    """
+	Description:
+		Checks whether mobile number is valid or not
+	Parameters:
+		mobile_number: mobile number to validate
+	Return:
+		bool: True if mobile number is valid, False otherwise
+    """
+    pattern = r'^\+[0-9]{2,3} [0-9]{10}$'
+    search = re.fullmatch(pattern, mobile_number)
+    if search:
+        logging.info(f"{mobile_number} is valid mobile number")
+        return True
+    else:
+        logging.warning(f"{mobile_number} is a invalid mobile number")
+        return False
             
 def main():
     """
@@ -63,10 +99,19 @@ def main():
     while True:
         last = input("Enter your last name: ")
         if validate_last_name(last):
-            print(f"{last} is a valid last name")
             break
-        print("Please enter valid last name")
         
+    while True:
+        email_id = input("Enter your email id: ")
+        if validate_email_id(email_id):
+            break
+
+    while True:
+        mobile_number = input("Enter your mobile number (with country code): ")
+        if validate_mobile_number(mobile_number):
+            print(f"{mobile_number} is a valid mobile number")
+            break
+        print("Please enter a valid mobile number.")
+
 if __name__ == "__main__":
-    main()
-    
+    main() 
