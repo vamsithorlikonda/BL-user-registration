@@ -1,6 +1,7 @@
 import re
 import logging
 
+
 #Configure Logging
 logging.basicConfig(
     level=logging.INFO,
@@ -132,9 +133,10 @@ def main():
     while True:
         password = input("Enter your password (min 8 characters, >=1 [A-Z], >=1 [0-9] and ==1 special character: ")
         if validate_password(password):
-            print(f"{password} is a valid password")
             break
-        print("Please enter a valid password (min 8 characters, >=1 [A-Z], >=1 [0-9] and ==1 special character )")
-
+        
+    print("Cleared all email samples")
+    print("Registration Completed Successfully")
+    
 if __name__ == "__main__":
     main()
