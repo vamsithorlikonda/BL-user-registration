@@ -81,6 +81,24 @@ def validate_mobile_number(mobile_number):
     else:
         logging.warning(f"{mobile_number} is a invalid mobile number")
         return False
+    
+def validate_password(pass_rule_1):
+    """
+	Description:
+		Checks whether password is minimum of 8 characters or not
+	Parameters:
+		pass_rule_1: password to validate
+	Return:
+		bool: True if password is valid, False otherwise
+    """
+    pattern = r'^.{8,}$'
+    search = re.fullmatch(pattern, pass_rule_1)
+    if search:
+        logging.info(f"{pass_rule_1} is a valid password")
+        return True
+    else:
+        logging.warning(f"{pass_rule_1} is a invalid password")
+        return False
             
 def main():
     """
@@ -109,9 +127,14 @@ def main():
     while True:
         mobile_number = input("Enter your mobile number (with country code): ")
         if validate_mobile_number(mobile_number):
-            print(f"{mobile_number} is a valid mobile number")
             break
-        print("Please enter a valid mobile number.")
+        
+    while True:
+        password_rule_1 = input("Enter your password (min 8 characters): ")
+        if validate_password(password_rule_1):
+            print(f"{password_rule_1} is a valid password")
+            break
+        print("Please enter a valid password (min 8 characters)")
 
 if __name__ == "__main__":
-    main() 
+    main()           
